@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102a43">
+  <title>Loan Application Portal</title>
+  <meta name="description" content="A simple, mobile-friendly loan application portal.">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Home">
+      <span class="brand-mark">L</span>
+      <span>
+        <strong id="brandName">Your Lending Business</strong>
+        <small>Loan application portal</small>
+      </span>
+    </a>
+    <span class="secure-note"><span class="dot"></span> Application demo</span>
+  </header>
+
+  <main class="shell">
+    <section class="intro">
+      <p class="eyebrow">SIMPLE • CLEAR • MOBILE-FRIENDLY</p>
+      <h1>Apply for a loan</h1>
+      <p>Complete the steps below to review your application details.</p>
+    </section>
+
+    <nav class="progress" aria-label="Application steps">
+      <div class="progress-line"><span id="progressFill"></span></div>
+      <div class="step-label active" data-step-label="1"><b>1</b><span>Personal</span></div>
+      <div class="step-label" data-step-label="2"><b>2</b><span>Loan details</span></div>
+      <div class="step-label" data-step-label="3"><b>3</b><span>Review</span></div>
+      <div class="step-label" data-step-label="4"><b>4</b><span>Complete</span></div>
+    </nav>
+
+    <section class="form-card">
+      <form id="loanForm" novalidate>
+        <section class="form-step active" data-step="1">
+          <div class="card-heading">
+            <span class="step-kicker">STEP 01</span>
+            <h2>Personal information</h2>
+            <p>Enter contact details so the lending team can identify your application.</p>
+          </div>
+          <label for="fullName">Full name</label>
+          <input id="fullName" name="fullName" autocomplete="name" placeholder="Enter your full name" required minlength="2">
+          <label for="phone">Mobile phone number</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="e.g. 07XXXXXXXX" required>
+          <p class="hint">Use a number you control. Never enter your mobile-money PIN or OTP.</p>
+          <label for="county">County</label>
+          <select id="county" name="county" required>
+            <option value="">Select your county</option>
+            <option>Nairobi</option><option>Kiambu</option><option>Mombasa</option><option>Nakuru</option>
+            <option>Kisumu</option><option>Machakos</option><option>Kajiado</option><option>Uasin Gishu</option>
+            <option>Other</option>
+          </select>
+          <div class="actions">
+            <span></span>
+            <button class="btn primary" type="button" data-next>Continue <span aria-hidden="true">→</span></button>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="2">
+          <div class="card-heading">
+            <span class="step-kicker">STEP 02</span>
+            <h2>Loan details</h2>
+            <p>Tell us what amount and repayment period you would like to request.</p>
+          </div>
+          <label for="amount">Requested amount (KES)</label>
+          <input id="amount" name="amount" type="number" inputmode="numeric" min="100" max="1000000" step="100" placeholder="e.g. 10000" required>
+          <label for="period">Preferred repayment period</label>
+          <select id="period" name="period" required>
+            <option value="">Select a period</option>
+            <option value="1 month">1 month</option><option value="2 months">2 months</option>
+            <option value="3 months">3 months</option><option value="6 months">6 months</option>
+            <option value="12 months">12 months</option>
+          </select>
+          <label for="purpose">Purpose of the loan</label>
+          <select id="purpose" name="purpose" required>
+            <option value="">Select a purpose</option>
+            <option>Business</option><option>Education</option><option>Medical expenses</option>
+            <option>Household needs</option><option>Other</option>
+          </select>
+          <div class="notice">
+            <strong>Before you continue</strong>
+            <p>Review the lender's interest, fees, repayment schedule and privacy notice before submitting any real application.</p>
+          </div>
+          <div class="actions">
+            <button class="btn secondary" type="button" data-back>← Back</button>
+            <button class="btn primary" type="button" data-next>Review application <span aria-hidden="true">→</span></button>
+          </div>
+        </section>
+
+        <section class="form-step" data-step="3">
+          <div class="card-heading">
+            <span class="step-kicker">STEP 03</span>
+            <h2>Review your details</h2>
+            <p>Check that the information below is correct.</p>
+          </div>
+          <dl class="review-list" id="reviewList"></dl>
+          <label class="consent">
+            <input id="consent" type="checkbox" required>
+            <span>I confirm that the details above are accurate and agree to be contacted about this application, subject to the lender's privacy notice.</span>
+          </label>
+          <div class="notice warning">
+            <strong>Demo mode</strong>
+            <p>This starter website does not send or save applications. Connect a secure, approved backend and publish your privacy notice before accepting real customer information.</p>
+          </div>
+          <div class="actions">
+            <button class="btn secondary" type="button" data-back>← Edit details</button>
+            <button class="btn primary" type="submit">Finish demo <span aria-hidden="true">→</span></button>
+          </div>
+        </section>
+
+        <section class="form-step completion" data-step="4">
+          <div class="success-icon" aria-hidden="true">✓</div>
+          <span class="step-kicker">DEMO COMPLETE</span>
+          <h2>Thank you</h2>
+          <p>Your form walkthrough is complete. <strong>No application has been submitted or sent.</strong></p>
+          <p class="muted">When a secure application service is connected, this page can show a real application reference and receipt.</p>
+          <button class="btn primary" type="button" id="startAgain">Start again</button>
+        </section>
+      </form>
+    </section>
+
+    <footer class="page-footer">
+      <p><strong>Important:</strong> This is a starter template, not an official provider website. Use only a business name, logo and affiliation statement you are legally authorized to use.</p>
+      <p>Never request a customer's PIN, password or one-time verification code.</p>
+    </footer>
+  </main>
+</body>
+</html>
